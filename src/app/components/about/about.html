@@ -1,0 +1,83 @@
+<section id="about" class="py-20 px-6 bg-slate-800/50 relative">
+  <div class="container mx-auto max-w-6xl">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">About Me</h2>
+      <div class="w-24 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      
+      <!-- Experience & Education -->
+      <div class="space-y-10">
+        
+        <!-- Experience -->
+        <div>
+          <h3 class="text-2xl font-semibold mb-6 text-slate-200 flex items-center gap-3">
+            <span class="text-cyan-400">💼</span> Experience
+          </h3>
+          
+          <!-- New Angular Control Flow (@for) to loop over experience -->
+          <div class="space-y-6 border-l-2 border-white/10 pl-6 ml-3">
+            @for (exp of portfolio.experience(); track exp.role) {
+              <div class="relative">
+                <div class="absolute w-4 h-4 bg-slate-900 border-2 border-cyan-500 rounded-full -left-[35px] top-1"></div>
+                <h4 class="text-xl font-bold text-white">{{ exp.role }}</h4>
+                <div class="text-cyan-400 text-sm font-medium mb-1">{{ exp.company }} | {{ exp.duration }}</div>
+                <p class="text-slate-400 text-sm mb-3">{{ exp.location }}</p>
+                <ul class="list-disc list-inside text-slate-300 space-y-2">
+                  @for (point of exp.points; track point) {
+                    <li>{{ point }}</li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div>
+          <h3 class="text-2xl font-semibold mb-6 text-slate-200 flex items-center gap-3">
+            <span class="text-cyan-400">🎓</span> Education
+          </h3>
+          
+          <div class="space-y-6 border-l-2 border-white/10 pl-6 ml-3">
+            @for (edu of portfolio.education(); track edu.degree) {
+              <div class="relative">
+                <div class="absolute w-4 h-4 bg-slate-900 border-2 border-cyan-500 rounded-full -left-[35px] top-1"></div>
+                <h4 class="text-xl font-bold text-white">{{ edu.degree }}</h4>
+                <div class="text-cyan-400 text-sm font-medium mb-1">{{ edu.institution }} | {{ edu.duration }}</div>
+                <p class="text-slate-400 text-sm">{{ edu.location }}</p>
+              </div>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <h3 class="text-2xl font-semibold mb-6 text-slate-200 flex items-center gap-3">
+          <span class="text-cyan-400">⚡</span> Technical Skills
+        </h3>
+        
+        <div class="space-y-8">
+          @for (skillGroup of portfolio.skills(); track skillGroup.category) {
+            <div class="bg-slate-800/80 p-6 rounded-2xl border border-white/5 shadow-xl backdrop-blur-sm hover:border-cyan-500/30 transition-colors">
+              <h4 class="text-lg font-bold text-white mb-4">{{ skillGroup.category }}</h4>
+              <div class="flex flex-wrap gap-2">
+                @for (item of skillGroup.items; track item) {
+                  <span class="px-4 py-2 bg-slate-700/50 text-cyan-100 rounded-full text-sm font-medium border border-white/10">
+                    {{ item }}
+                  </span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
