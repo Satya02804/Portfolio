@@ -1,0 +1,144 @@
+<section id="contact" class="py-20 px-6 bg-slate-900 relative">
+  
+  <!-- Background Elements -->
+  <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSIvPjwvc3ZnPg==')] opacity-50"></div>
+
+  <div class="container mx-auto max-w-5xl relative z-10">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Get In Touch</h2>
+      <div class="w-24 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+      <p class="text-slate-400 mt-6 max-w-2xl mx-auto">
+        I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-12 bg-slate-800/40 rounded-3xl p-8 md:p-12 border border-white/10 backdrop-blur-md shadow-2xl">
+      
+      <!-- Contact Info -->
+      <div class="md:col-span-2 space-y-8">
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-6">Contact Information</h3>
+          <p class="text-slate-400 mb-8">Feel free to reach out to me directly through any of these channels.</p>
+        </div>
+
+        <div class="space-y-6">
+          <a [href]="'mailto:' + portfolio.email()" class="flex items-center gap-4 text-slate-300 hover:text-cyan-400 transition-colors group">
+            <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-white/5 group-hover:border-cyan-500/50">
+              <span class="text-xl">✉️</span>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500">Email</p>
+              <p class="font-medium">{{ portfolio.email() }}</p>
+            </div>
+          </a>
+
+          <a [href]="'tel:' + portfolio.phone()" class="flex items-center gap-4 text-slate-300 hover:text-cyan-400 transition-colors group">
+            <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-white/5 group-hover:border-cyan-500/50">
+              <span class="text-xl">📞</span>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500">Phone</p>
+              <p class="font-medium">{{ portfolio.phone() }}</p>
+            </div>
+          </a>
+
+          <a [href]="'https://' + portfolio.linkedin()" target="_blank" class="flex items-center gap-4 text-slate-300 hover:text-cyan-400 transition-colors group">
+            <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-white/5 group-hover:border-cyan-500/50">
+              <span class="text-xl">💼</span>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500">LinkedIn</p>
+              <p class="font-medium">{{ portfolio.linkedin() }}</p>
+            </div>
+          </a>
+
+          <a [href]="'https://' + portfolio.github()" target="_blank" class="flex items-center gap-4 text-slate-300 hover:text-cyan-400 transition-colors group">
+            <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-white/5 group-hover:border-cyan-500/50">
+              <span class="text-xl">💻</span>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500">GitHub</p>
+              <p class="font-medium">{{ portfolio.github() }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="md:col-span-3">
+        <!-- Success Message -->
+        <div *ngIf="successMessage" class="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 transition-all">
+          {{ successMessage }}
+        </div>
+        
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 transition-all">
+          {{ errorMessage }}
+        </div>
+
+        <form class="space-y-6" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-slate-300 ml-1">Your Name <span class="text-red-400">*</span></label>
+              <input formControlName="name" type="text" class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600">
+              <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-xs text-red-400 ml-1 mt-1">
+                Please enter a valid name.
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-slate-300 ml-1">Your Email <span class="text-red-400">*</span></label>
+              <input formControlName="email" type="email" class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600">
+              <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-xs text-red-400 ml-1 mt-1">
+                Please enter a valid email address.
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300 ml-1">Subject <span class="text-red-400">*</span></label>
+            <input formControlName="subject" type="text" placeholder="How can I help you?" class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600">
+            <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched" class="text-xs text-red-400 ml-1 mt-1">
+              Please enter a subject.
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-slate-300 ml-1">Message <span class="text-red-400">*</span></label>
+            <textarea formControlName="message" rows="5" placeholder="Your message here..." class="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all placeholder:text-slate-600 resize-none"></textarea>
+            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-xs text-red-400 ml-1y mt-1">
+              Please enter a message (at least 10 characters).
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="isSubmitting" class="w-full bg-cyan-500 hover:bg-cyan-400 disabled:opacity-50 disabled:cursor-not-allowed text-slate-900 font-bold py-4 rounded-xl transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(6,182,212,0.3)] flex justify-center items-center gap-2">
+            <span *ngIf="isSubmitting" class="w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin"></span>
+            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div *ngIf="showToast" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-slate-800 border border-green-500/30 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] rounded-xl px-5 py-4 animate-bounce">
+    <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <div>
+      <p class="text-sm font-semibold text-white">Message Sent!</p>
+      <p class="text-xs text-slate-400">I will get back to you soon.</p>
+    </div>
+    <button (click)="showToast = false" class="ml-4 text-slate-400 hover:text-white transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+
+</section>
