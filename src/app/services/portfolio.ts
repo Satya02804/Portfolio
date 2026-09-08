@@ -34,8 +34,8 @@ export class Portfolio {
   phone = signal('+91 7863078420');
   linkedin = signal('www.linkedin.com/in/satya--patel');
   github = signal('github.com/Satya02804');
-  
-  summary = signal('Results-driven Full-Stack Web Developer with 8+ months of hands-on industry experience building scalable ERP systems and e-commerce applications. Proficient in PHP/Laravel, React.js, Node.js, Express.js, and MySQL. Pursuing MCA to deepen expertise in system design.');
+
+  summary = signal('Results-driven Full-Stack Web Developer with 9+ months of hands-on industry experience building scalable ERP systems and e-commerce applications. Proficient in PHP/Laravel, React.js, Node.js, Express.js, and MySQL. Pursuing MCA to deepen expertise in system design.');
 
   // Skills
   skills = signal([
@@ -49,7 +49,7 @@ export class Portfolio {
     {
       role: 'Software Development Intern',
       company: 'Shree Mahakali Software Pvt. Ltd.',
-      duration: 'Last 8 Months – Present',
+      duration: 'Last 9 Months – Present',
       location: 'Ahmedabad, India',
       points: [
         'Developed and maintained business modules, forms, and data-driven workflows in a live ERP system.',

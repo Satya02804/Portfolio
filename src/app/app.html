@@ -1,18 +1,46 @@
 <div class="min-h-screen bg-slate-900 text-white font-sans selection:bg-cyan-500 selection:text-white">
-  
-  <!-- Header Placeholder -->
+
+  <!-- Header -->
   <header class="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-white/10">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <a href="#" class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
         Portfolio
       </a>
+
+      <!-- Desktop Navigation -->
       <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
         <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
         <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
         <a href="#resume" class="hover:text-cyan-400 transition-colors">Resume</a>
         <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
       </nav>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        type="button"
+        (click)="toggleMobileMenu()"
+        aria-label="Toggle navigation menu"
+        class="md:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          @if (!isMobileMenuOpen()) {
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          } @else {
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          }
+        </svg>
+      </button>
     </div>
+
+    <!-- Mobile Dropdown Menu -->
+    @if (isMobileMenuOpen()) {
+      <nav class="md:hidden bg-slate-900/95 border-b border-white/10 px-6 py-4 flex flex-col gap-4 text-base font-medium text-slate-300">
+        <a href="#about" (click)="closeMobileMenu()" class="hover:text-cyan-400 transition-colors py-1">About</a>
+        <a href="#projects" (click)="closeMobileMenu()" class="hover:text-cyan-400 transition-colors py-1">Projects</a>
+        <a href="#resume" (click)="closeMobileMenu()" class="hover:text-cyan-400 transition-colors py-1">Resume</a>
+        <a href="#contact" (click)="closeMobileMenu()" class="hover:text-cyan-400 transition-colors py-1">Contact</a>
+      </nav>
+    }
   </header>
 
   <!-- Main Content Area -->

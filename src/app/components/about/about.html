@@ -1,22 +1,22 @@
-<section id="about" class="py-20 px-6 bg-slate-800/50 relative">
+<section id="about" class="py-20 px-6 bg-slate-800/50 relative scroll-mt-24">
   <div class="container mx-auto max-w-6xl">
-    
+
     <div class="text-center mb-16">
       <h2 class="text-4xl font-bold mb-4">About Me</h2>
       <div class="w-24 h-1 bg-cyan-500 mx-auto rounded-full"></div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-12">
-      
+
       <!-- Experience & Education -->
       <div class="space-y-10">
-        
+
         <!-- Experience -->
         <div>
           <h3 class="text-2xl font-semibold mb-6 text-slate-200 flex items-center gap-3">
             <span class="text-cyan-400">💼</span> Experience
           </h3>
-          
+
           <!-- New Angular Control Flow (@for) to loop over experience -->
           <div class="space-y-6 border-l-2 border-white/10 pl-6 ml-3">
             @for (exp of portfolio.experience(); track exp.role) {
@@ -40,7 +40,7 @@
           <h3 class="text-2xl font-semibold mb-6 text-slate-200 flex items-center gap-3">
             <span class="text-cyan-400">🎓</span> Education
           </h3>
-          
+
           <div class="space-y-6 border-l-2 border-white/10 pl-6 ml-3">
             @for (edu of portfolio.education(); track edu.degree) {
               <div class="relative">
@@ -60,7 +60,7 @@
         <h3 class="text-2xl font-semibold mb-6 text-slate-200 flex items-center gap-3">
           <span class="text-cyan-400">⚡</span> Technical Skills
         </h3>
-        
+
         <div class="space-y-8">
           @for (skillGroup of portfolio.skills(); track skillGroup.category) {
             <div class="bg-slate-800/80 p-6 rounded-2xl border border-white/5 shadow-xl backdrop-blur-sm hover:border-cyan-500/30 transition-colors">

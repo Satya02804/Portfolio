@@ -34,17 +34,20 @@ export class Resume implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.observer = new IntersectionObserver(entries => {
-        // We need to use NgZone if we're not using signals, but standard property binding works 
-        // with the next change detection cycle.
-        if (entries[0].isIntersecting) {
-          this.isVisible = true;
-          this.cdr.detectChanges();
-          this.observer?.disconnect();
-        }
-      }, { threshold: 0.2 });
-      
-      this.observer.observe(this.el.nativeElement);
+      if (typeof IntersectionObserver !== 'undefined') {
+        this.observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            this.isVisible = true;
+            this.cdr.detectChanges();
+            this.observer?.disconnect();
+          }
+        }, { threshold: 0.2 });
+
+        this.observer.observe(this.el.nativeElement);
+      } else {
+        this.isVisible = true;
+        this.cdr.detectChanges();
+      }
     }
   }
 
@@ -56,17 +59,17 @@ export class Resume implements AfterViewInit, OnDestroy {
 
   onMouseMove(event: MouseEvent) {
     if (!this.card) return;
-    
+
     const rect = this.card.nativeElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg tilt
     const rotateY = ((x - centerX) / centerX) * 10;
-    
+
     // Fast transition for snappy mouse tracking
     this.card.nativeElement.style.transition = 'transform 0.1s ease-out, border-color 0.5s ease';
     this.card.nativeElement.style.transform = `perspective(1000px) scale3d(1.02, 1.02, 1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
@@ -74,7 +77,7 @@ export class Resume implements AfterViewInit, OnDestroy {
 
   onMouseLeave() {
     if (!this.card) return;
-    
+
     // Smooth transition back to resting state
     this.card.nativeElement.style.transition = 'transform 0.5s ease-out, border-color 0.5s ease';
     this.card.nativeElement.style.transform = 'perspective(1000px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg)';
